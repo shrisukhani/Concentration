@@ -14,6 +14,8 @@ class Concentration {
     
     var indexOfOneAndOnlyFaceUpCard: Int?
     
+    var numberOfPairsOfMatchedCards = 0
+    
     func chooseCard(at index: Int) {
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
@@ -21,6 +23,7 @@ class Concentration {
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    numberOfPairsOfMatchedCards += 1
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
@@ -40,7 +43,12 @@ class Concentration {
             cards += [card, card] //Card is a struct. Structs are passed around by value
         }
         
-        // TODO: Shuffle the cards
+        var tempArray = [Card]()
+        while cards.count != 0 {
+            let indexToRemove = Int(arc4random_uniform(UInt32(cards.count)))
+            tempArray.append(cards[indexToRemove])
+            cards.remove(at: indexToRemove)
+        }
     }
     
 }

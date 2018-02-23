@@ -47,6 +47,9 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
         }
+        if game.numberOfPairsOfMatchedCards == ((cardButtons.count + 1) / 2) {
+            // let alertForWin =
+        }
     }
     
     var emoji = [Int:String]()
